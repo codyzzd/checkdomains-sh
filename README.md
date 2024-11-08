@@ -14,11 +14,17 @@ This script allows you to check the availability of domain names. It can be used
 
 ## Requirements
 
-- The script uses the `whois` command to check domain availability, so ensure it's installed on your system.
-  - For Ubuntu/Debian, you can install it with:
-    ```bash
-    sudo apt install whois
-    ```
+The script uses the `whois` command to check domain availability, so ensure it's installed on your system.
+
+- On **Ubuntu**:
+  ```bash
+  sudo apt install whois
+  ```
+
+- On **macOS** (using Homebrew):
+  ```bash
+  brew install whois
+  ```
 
 ## Usage
 
