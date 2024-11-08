@@ -1,5 +1,5 @@
 
-# Domain Status Checker
+# Domain Status Checker Bash
 
 This script allows you to check the availability of domain names. It can be used for checking a single domain or for processing a list of domains from a file.
 
