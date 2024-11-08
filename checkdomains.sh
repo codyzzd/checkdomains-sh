@@ -5,10 +5,10 @@ check_domain_status() {
   local domain="$1"
   if whois "$domain" | grep -qi "No match"; then
     # Domínio disponível
-    echo "🟢 : $domain"
+    echo "🟢 FREE: $domain"
   else
     # Domínio indisponível
-    echo "🔴 : $domain"
+    echo "🔴 USED: $domain"
   fi
 }
 
@@ -25,7 +25,7 @@ fi
 INPUT="$1"
 FILTER=$(echo "$2" | tr '[:upper:]' '[:lower:]')  # Converte para minúsculas usando tr
 
-# Se o input for um arquivo
+# Verifica se o input é um arquivo
 if [[ -f "$INPUT" ]]; then
   # Verifica se o arquivo existe
   if [[ ! -f "$INPUT" ]]; then
@@ -42,18 +42,18 @@ if [[ -f "$INPUT" ]]; then
     STATUS=$(check_domain_status "$domain")
 
     # Filtra a saída com base no parâmetro 'FILTER'
-    if [[ -z "$FILTER" || "$FILTER" == "on" && "$STATUS" == "🟢"* || "$FILTER" == "off" && "$STATUS" == "🔴"* ]]; then
+    if [[ -z "$FILTER" || "$FILTER" == "on" && "$STATUS" == "FREE"* || "$FILTER" == "off" && "$STATUS" == "USED"* ]]; then
       echo "$STATUS"
     fi
   done < "$INPUT"
 
-# Se o input for um único domínio
-elif [[ -n "$INPUT" ]]; then
+# Verifica se o input é um único domínio
+elif [[ "$INPUT" =~ ^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
   # Verifica a disponibilidade do domínio
   STATUS=$(check_domain_status "$INPUT")
 
   # Filtra a saída com base no parâmetro 'FILTER'
-  if [[ -z "$FILTER" || "$FILTER" == "on" && "$STATUS" == "🟢"* || "$FILTER" == "off" && "$STATUS" == "🔴"* ]]; then
+  if [[ -z "$FILTER" || "$FILTER" == "on" && "$STATUS" == "FREE"* || "$FILTER" == "off" && "$STATUS" == "USED"* ]]; then
     echo "$STATUS"
   fi
 
