@@ -5,10 +5,10 @@ check_domain_status() {
   local domain="$1"
   if whois "$domain" | grep -qi "No match"; then
     # Domínio disponível
-    echo "🟢 FREE: $domain"
+    echo "✅ FREE: $domain"
   else
     # Domínio indisponível
-    echo "🔴 USED: $domain"
+    echo "🚫 USED: $domain"
   fi
 }
 
